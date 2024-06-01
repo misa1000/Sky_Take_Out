@@ -90,5 +90,11 @@ public class EmployeeController {
         PageResult q=employeeService.PageSelect(employeePageQueryDTO);
         return Result.success(q);
     }
-    @PostMapping("")
+    @PostMapping("/status/{status}")
+    @ApiOperation("设置员工账号的启用和禁止")
+    public Result UpdateEmployee(@PathVariable Integer status,Long id) {
+        log.info("设置id：{}员工的账号状态为status:{}",id,status);
+        employeeService.updateStatus(status,id);
+        return Result.success();
+    }
 }
