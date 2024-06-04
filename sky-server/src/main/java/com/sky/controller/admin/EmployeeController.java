@@ -92,9 +92,23 @@ public class EmployeeController {
     }
     @PostMapping("/status/{status}")
     @ApiOperation("设置员工账号的启用和禁止")
-    public Result UpdateEmployee(@PathVariable Integer status,Long id) {
+    public Result UpdateEmployeeStatus(@PathVariable Integer status,Long id) {
         log.info("设置id：{}员工的账号状态为status:{}",id,status);
         employeeService.updateStatus(status,id);
+        return Result.success();
+    }
+    @GetMapping("/{id}")
+    @ApiOperation("根据id查询员工")
+    public Result<Employee> GetEmployee(@PathVariable Long id) {
+        log.info("查询id：{}的员工账号信息");
+        Employee a=employeeService.IDselect(id);
+        return Result.success(a);
+    }
+    @PutMapping
+    @ApiOperation("编辑员工信息")//此处有DTO类是用来专门接受前前端传递的employee对象（因为有些属性前端并不关注）
+    public Result UpdateEmployee(@RequestBody EmployeeDTO employeeDTO) {
+        log.info("修改员工信息");
+        employeeService.update(employeeDTO);
         return Result.success();
     }
 }

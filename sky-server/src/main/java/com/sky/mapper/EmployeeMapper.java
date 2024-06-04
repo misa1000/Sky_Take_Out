@@ -37,7 +37,17 @@ public interface EmployeeMapper {
 
     /**
      * 设置员工账号的启用与禁止
+     * 编辑员工信息
      * @param employee
      */
     void updateStatus(Employee employee);
+
+    /**
+     * 根据id查询员工信息回显
+     * @param id
+     * @return
+     */
+    @Select("select * from employee where id=#{id}")
+    Employee IDselect(Long id);
+
 }

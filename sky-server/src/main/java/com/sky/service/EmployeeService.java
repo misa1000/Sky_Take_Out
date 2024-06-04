@@ -34,4 +34,17 @@ public interface EmployeeService {
      * @param id
      */
     void updateStatus(Integer status, Long id);
+
+    /**
+     * 根据id进行员工的查询
+     * @param id
+     * @return
+     */
+    Employee IDselect(Long id);
+
+    /**
+     * 对员工信息的编辑
+     * @param employeeDTO
+     */
+    void update(EmployeeDTO employeeDTO);
 }
