@@ -44,7 +44,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         //2、处理各种异常情况（用户名不存在、密码不对、账号被锁定）
         if (employee == null) {
             //账号不存在
-            throw new AccountNotFoundException(MessageConstant.ACCOUNT_NOT_FOUND);//自定义的异常类！（显示无用户的异常）
+             new AccountNotFoundException(MessageConstant.ACCOUNT_NOT_FOUND);//自定义的异常类！（显示无用户的异常）
         }
 
         //密码比对
@@ -70,12 +70,12 @@ public class EmployeeServiceImpl implements EmployeeService {
         //设置密码
         employee.setPassword(DigestUtils.md5DigestAsHex(PasswordConstant.DEFAULT_PASSWORD.getBytes()));
         //设置更新时间和创建时间
-        employee.setCreateTime(LocalDateTime.now());
-        employee.setUpdateTime(LocalDateTime.now());
+//        employee.setCreateTime(LocalDateTime.now());
+//        employee.setUpdateTime(LocalDateTime.now());
         //记录增加人的id以及被增进人的id,从Threadlocal中取得操纵人的id
-        Long a= BaseContext.getCurrentId();
-        employee.setCreateUser(a);
-        employee.setUpdateUser(a);
+//        Long a= BaseContext.getCurrentId();
+//        employee.setCreateUser(a);
+//        employee.setUpdateUser(a);
         employeeMapper.insert(employee);
 }
 
